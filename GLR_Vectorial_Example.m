@@ -1,5 +1,5 @@
 % 
-% GLRT Detector - Vectorial Example
+% GLR Detector - Vectorial Example
 %
 % Threshold and Detection probability for GLRT detector w/ MC Simulation
 %
