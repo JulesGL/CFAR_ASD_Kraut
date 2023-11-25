@@ -22,7 +22,7 @@ Pfa=1E-1;
 N=10;
 
 % Number of measurements K
-K=500;
+K=1;
 
 % Number of Monte-Carlo samples M
 M=200/Pfa;
@@ -43,15 +43,16 @@ switch H
 end
 
 % Noise power 
-sigma2=1E-1;
+sigma2=1E0;
 
 % Random covariance matrix
-sampleR=randn(N);
-R=(sampleR'*sampleR);
+randR=randn(N);
+symR=(randR+randR')/2;
+R=(symR'*symR);
 
 % Generate synthetic measurements !
 W=sqrt(1/2)*(randn(N,K,1)+1i*randn(N,K,1));
-y=sqrtm(sigma2*R)*W;
+y=psi+sqrtm(sigma2*R)*W;
 
 
 %% Generate M training vectors in N dimensions
@@ -64,9 +65,10 @@ X=sqrtm(R)*W;
 
 %% 1) Training vector sample covariance matrix S
 
-S=X*(X')/M;
+S=abs(X*(X')/M);
 invS=inv(S);
-%% 2) Estimation of cos^2
+%% 2) Test statistic of ASD : estimation of cos^2
 
-cos2_hat=(abs(psi'*invS*y).^2)/((psi'*invS*psi)*(y'*invS*y));
+
+cos2_hat=1/(psi'*invS*psi)*(abs(psi'*invS*y)).^2./(diag(y'*invS*y)');
 

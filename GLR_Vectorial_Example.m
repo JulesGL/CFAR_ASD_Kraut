@@ -69,7 +69,6 @@ hold off
 
 %% Probability of detection
 
-%% Signal-To-Noise Ratio!
 Pfa_vec=[1E-1,5E-2,1E-2,1E-3];
 
 %sigma2_vec=[1E-1,1,2,4,1E1,20,1E2,1E3,5E3,1E4];
@@ -102,6 +101,9 @@ for p=1:length(Pfa_vec)
         %Pd_exp=length(find(t_H1>eta_exp))/K;
     end
 end
+
+%% Signal-To-Noise Ratio!
+
 SNR_opt=20*log10(((a'*a)*ones(size(sigma2_vec)))./sigma2_vec);
 
 %% ROC ! Receiver Operating Curve
