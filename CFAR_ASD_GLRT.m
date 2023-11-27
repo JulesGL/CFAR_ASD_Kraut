@@ -72,3 +72,7 @@ invS=inv(S);
 
 cos2_hat=1/(psi'*invS*psi)*(abs(psi'*invS*y)).^2./(diag(y'*invS*y)');
 
+
+%% 3) Threshold computation
+
+%% 4) Monte carlo simulation
