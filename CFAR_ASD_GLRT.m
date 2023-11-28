@@ -151,7 +151,7 @@ hold off
 
 %% ROC - Pd = f(Pfa)
 
-Pfa_vec=1E-3:1E-3:1E-1;
+Pfa_vec=1E-4:1E-4:1E-1;
 sigma2=20;
 Pd_ROC_vec=zeros(1,length(Pfa_vec));
 
@@ -193,7 +193,8 @@ hold on
 xlabel('P_{fa}')
 ylabel('P_d')
 title('P_d as function of P_{fa}, fixed SNR')
-plot(Pfa_vec,Pd_ROC_vec(:),color='b',marker='*')
+plot(Pfa_vec,Pd_ROC_vec(:),color='b',LineWidth=1)
+xlim([0 0.01])
 legend('P_d')
 hold off
 
