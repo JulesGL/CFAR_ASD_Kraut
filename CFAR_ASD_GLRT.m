@@ -21,11 +21,11 @@ Pfa = 1E-1;
 % Number of antennas/dimension N
 N = 10;
 
-% Number of measurements K
-K = 1;
+% Number of measurements K : Number of Monte-Carlo samples
+K = 200 / Pfa;
 
-% Number of Monte-Carlo samples M
-M = 200 / Pfa;
+% Number of training vectors M
+M = 5000;
 
 % Deterministic and known steering vector psi: value for alternative hyp H1
 psi = 2 * ones(N, 1) + 1i * 2 * ones(N, 1);
@@ -64,13 +64,51 @@ X = sqrtm(R) * W;
 
 %% 1) Sample covariance matrix S
 
-S = abs(X * (X') / M);
+S = X * (X') / M;
 invS = inv(S);
 
 %% 2) Test statistic of ASD: estimation of cos^2
 
-cos2_hat = 1 / (psi' * invS * psi) * (abs(psi' * invS * y)).^2 ./ (diag(y' * invS * y)');
+% Real because sometimes complex with null imag part 
+cos2_hat = real(1 / (psi' * invS * psi) * (abs(psi' * invS * y)).^2 ./ (diag(y' * invS * y)'));
 
-%% 3) Threshold computation
+%% 3)a) Threshold computation
 
-%% 4) Monte Carlo simulation
+% Sort the test statistic 
+cos2_hat=sort(cos2_hat);
+
+% Find exp eta so that Nbr_fa=MC*Pfa
+eta_exp=cos2_hat(floor(K*(1-Pfa)));
+
+%% 3)b) Eta as a function of Pfa
+Pfa_vec=1E-2:1E-2:0.999;
+eta_exp_array=zeros(1,length(Pfa_vec));
+
+for p=1:length(Pfa_vec)    
+    % False alarm rate
+    Pfa=Pfa_vec(p);
+
+    % Number of measurements K : Number of Monte-Carlo samples
+    K = floor(200 / Pfa);
+
+    % Generate synthetic measurements!
+    W = sqrt(1/2) * (randn(N, K, 1) + 1i * randn(N, K, 1));
+    y = psi + sqrtm(sigma2 * R) * W;
+    
+    % Real because sometimes complex with null imag part 
+    cos2_hat = real(1 / (psi' * invS * psi) * (abs(psi' * invS * y)).^2 ./ (diag(y' * invS * y)'));
+
+    % Sort the test statistic 
+    cos2_hat=sort(cos2_hat);
+    
+    % Find exp eta so that Nbr_fa=MC*Pfa
+    eta_exp_array(p)=cos2_hat(floor(K*(1-Pfa)));
+end
+
+figure
+hold on
+xlabel('P_{fa}')
+ylabel('\eta')
+title('Threshold as a function of Probability of False alarm')
+plot(Pfa_vec,eta_exp_array,color='b',marker='pentagram')
+hold off

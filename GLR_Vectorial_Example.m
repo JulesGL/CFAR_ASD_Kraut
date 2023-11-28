@@ -49,7 +49,7 @@ clc
 disp('Ecart entre eta théorique et expérimental) : ')
 display(abs(eta_th-eta_exp))
 %% Eta as a function of Pfa
-Pfa_vec=1E-4:1E-4:1E-1;
+Pfa_vec=1E-4:1E-4:1E0;
 eta_th_array=zeros(1,length(Pfa_vec));
 
 for p=1:length(Pfa_vec)
