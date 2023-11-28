@@ -30,17 +30,7 @@ M = 5000;
 % Deterministic and known steering vector psi: value for alternative hyp H1
 psi = 2 * ones(N, 1) + 1i * 2 * ones(N, 1);
 
-%% Generate K synthetic measurements
-
-% Mu depending on the case we want to study
-% Change H ☺
-H = 0;
-switch H
-    case 0
-        mu = 0 * ones(1, N);
-    case 1
-        mu = 2 * ones(1, N);
-end
+%% Generate K synthetic measurements in N-dimension
 
 % Noise power 
 sigma2 = 1E0;
@@ -54,7 +44,7 @@ R = (symR' * symR);
 W = sqrt(1/2) * (randn(N, K, 1) + 1i * randn(N, K, 1));
 y = psi + sqrtm(sigma2 * R) * W;
 
-%% Generate M training vectors in N dimensions
+%% Generate M training vectors in N-dimension
 
 % Generate white complex noise 
 W = sqrt(1/2) * (randn(N, M, 1) + 1i * randn(N, M, 1));
@@ -107,7 +97,7 @@ title('Threshold as a function of Probability of False alarm')
 plot(Pfa_vec,eta_exp_array,color='b')
 hold off
 
-%% 3)b) Eta as a function of Pfa
+%% 3)b) Pd as a function of SNR for a fixed Pfa
 Pfa_vec=[1E-1,5E-2,1E-2,1E-3];
 
 sigma2_vec=1E-1:1E0:1E2;
