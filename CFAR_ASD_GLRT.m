@@ -30,8 +30,6 @@ M = 5000;
 % Deterministic and known steering vector psi: value for alternative hyp H1
 psi = 2 * ones(N, 1) + 1i * 2 * ones(N, 1);
 
-%% Generate K synthetic measurements in N-dimension
-
 % Noise power 
 sigma2 = 1E0;
 
@@ -40,11 +38,7 @@ randR = randn(N);
 symR = (randR + randR') / 2;
 R = (symR' * symR);
 
-% Generate synthetic measurements!
-W = sqrt(1/2) * (randn(N, K, 1) + 1i * randn(N, K, 1));
-y = psi + sqrtm(sigma2 * R) * W;
-
-%% Generate M training vectors in N-dimension
+% Generate M training vectors in N-dimension
 
 % Generate white complex noise 
 W = sqrt(1/2) * (randn(N, M, 1) + 1i * randn(N, M, 1));
@@ -52,18 +46,11 @@ W = sqrt(1/2) * (randn(N, M, 1) + 1i * randn(N, M, 1));
 % Colored noise
 X = sqrtm(R) * W;
 
-%% 1) Sample covariance matrix S
-
 S = X * (X') / M;
 invS = inv(S);
 
-%% 2) Test statistic of ASD: estimation of cos^2
-
-% Real because sometimes complex with null imag part 
-cos2_hat = real(1 / (psi' * invS * psi) * (abs(psi' * invS * y)).^2 ./ (diag(y' * invS * y)'));
-
-%% 3) Eta as a function of Pfa
-Pfa_vec=1E-4:1E-4:5E-1;
+%% Part 4.1) Eta as a function of Pfa
+Pfa_vec=1E-4:1E-4:9E-1;
 eta_exp_array=zeros(1,length(Pfa_vec));
 
 for p=1:length(Pfa_vec)    
@@ -73,7 +60,7 @@ for p=1:length(Pfa_vec)
     % Number of measurements K : Number of Monte-Carlo samples
     K = floor(200 / Pfa);
 
-    % Generate synthetic measurements under H0!
+    % Generate synthetic measurements under H0! (mu=0)
     W = sqrt(1/2) * (randn(N, K, 1) + 1i * randn(N, K, 1));
     y = sqrtm(sigma2 * R) * W;
     
