@@ -192,7 +192,7 @@ end
 
 %% Display ROC
 
-Pd_ROC_vec=mean(Pd_ROC_vec,2);
+%Pd_ROC_vec=mean(Pd_ROC_vec,2);
 
 figure
 hold on
@@ -200,6 +200,7 @@ xlabel('P_{fa}')
 ylabel('P_d')
 title('P_d as function of P_{fa}, fixed SNR')
 plot(Pfa_vec,Pd_ROC_vec(:),color='b',LineWidth=1)
+%plot(Pfa_vec,Pfa_vec,color='r',LineStyle='--')
 %xlim([0 0.01])
 legend('P_d')
 hold off
