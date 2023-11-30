@@ -7,7 +7,7 @@
 % in IEEE Transactions on Signal Processing vol. 47, no. 9, pp. 2538-2541,
 %  Sept. 1999, doi: 10.1109/78.782198. 
 %
-% DETECTION CLASS - SiSy - 21/11/2023 - ISAE-Supaero - Jules GOMEL ☺
+% DETECTION CLASS - SiSy - December 8, 2023 - ISAE-Supaero - Jules GOMEL ☺
 % Academic Year 2023/2024 - Prof. S. Bidon
 
 %% Constants
