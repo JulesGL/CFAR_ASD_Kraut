@@ -1,4 +1,4 @@
-# 📡 Detection Class research project - Work In Progress
+# 📡 Detection Class research project
 
 
 Welcome to the README for my research project focusing on the article titled "The CFAR Adaptive Subspace Detector is a Scale-Invariant GLRT", written by S.Kraut and L.L. Scharf and published in IEEE Transactions on Signal Processing in 1999.
