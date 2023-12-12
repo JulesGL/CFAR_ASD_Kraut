@@ -3,9 +3,10 @@
 %
 % Work on Shawn Kraut & Louis L. Scharf 1998 article for a detection class project
 %
-% Ref : S. Kraut and L. L. Scharf, "The CFAR adaptive subspace detector is a scale-invariant GLRT," 
+% References of the article : 
+% S. Kraut and L. L. Scharf, "The CFAR adaptive subspace detector is a scale-invariant GLRT," 
 % in IEEE Transactions on Signal Processing vol. 47, no. 9, pp. 2538-2541,
-%  Sept. 1999, doi: 10.1109/78.782198. 
+% Sept. 1999, doi: 10.1109/78.782198. 
 %
 % DETECTION CLASS - SiSy - December 8, 2023 - ISAE-Supaero - Jules GOMEL ☺
 % Academic Year 2023/2024 - Prof. S. Bidon

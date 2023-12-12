@@ -16,11 +16,13 @@ I wrote some examples of basic detectors (Neyman-Pearson, GLRT), implemented the
 
 The project is structured as follows:
 
-- **Examples** This folder contains a few example files following cases of scalar and vectorial Neyman-Pearson and Generalized Likelihood Ratio (GLR) test.
-
-- **CFAR_ASD_GLR_main_code** The main code of the simulation of ASD
+- **CFAR_ASD_GLR_main_code** The main MatLab code of the simulation of ASD
 
 - **Report** The PDF containing my report on this detection project containing the context studied, some details about the article (development of the test statistic and link to GLRT) and the results found after simulation.
+
+- **Examples** This folder contains a few example files following cases of scalar and vectorial Neyman-Pearson and Generalized Likelihood Ratio (GLR) test.
+
+- **img** This folder features the .eps images used in the report, gathered from the MatLab code
 
 ## 🤝 How to Contribute 
 
